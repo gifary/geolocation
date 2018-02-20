@@ -1,6 +1,6 @@
 <?php
 	
-	//get geolocation first from
+	//get geolocation first
 	function getLongLat($postcode){
 		$curl = curl_init();
 
