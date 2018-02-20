@@ -71,8 +71,8 @@
 		echo $html;
 	}
 
-	$distance = $_GET['distance']*1000;
-	$postcode = $_GET['postcode'];
+	$distance = $_POST['distance']*1000;
+	$postcode = $_POST['postcode'];
 	if(empty($distance) || empty($postcode)){
 		echo "parameter distance and postcode required";
 		return false;
