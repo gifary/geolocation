@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="159px" viewBox="0 0 320 159" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#00F1FF" offset="0%"></stop>
+            <stop stop-color="#00DFFE" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <polyline id="path-2" points="0 104.253276 38.3250522 75.1835927 59.2234072 90.6702794 78.0286152 60.7107345 110.111733 125 136.976113 72.1194134 176.468325 35.3401358 201.215432 49.8487159 224.32604 13 262.73541 49.8487159 275.832434 80.14884 306.06192 98.9811035 321 69.0224805"></polyline>
+        <filter x="-2.5%" y="-5.4%" width="105.0%" height="114.3%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0685858243 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-4" x="0" y="0" width="104" height="20" rx="10"></rect>
+        <filter x="-6.7%" y="-25.0%" width="113.5%" height="170.0%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.182376585 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="HOMEPAGE_tooltips_3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(0.000000, -162.000000)">
+        <g id="Group-5" transform="translate(0.000000, 162.000000)">
+            <polygon id="Rectangle-13" fill="url(#linearGradient-1)" opacity="0.191066576" points="0 103.810068 38.4199219 75.9663607 59.0175781 91.0114557 77.9970703 62.3250774 109.912109 124.573221 137.027344 72.6629352 176.423828 36.7076757 201.353516 49.8214486 224.188477 15 262.867188 49.8214486 275.277344 80.8551998 306.236328 99.4496996 320 71.3465614 320 152.722656 0 159.070312"></polygon>
+            <g id="Path-8" stroke-linecap="round">
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                <use stroke="#00E0FF" stroke-width="2" xlink:href="#path-2"></use>
+            </g>
+            <g id="Group-2" transform="translate(210.000000, 0.000000)">
+                <circle id="Oval-4" fill="#FFFFFF" opacity="0.105751812" cx="14" cy="14" r="14"></circle>
+                <circle id="Oval-4" fill="#1098C8" cx="14" cy="14" r="11"></circle>
+                <circle id="Oval-4" fill="#02D0EC" cx="14" cy="14" r="8"></circle>
+                <circle id="Oval-4" fill="#FFFFFF" cx="14" cy="14" r="5"></circle>
+            </g>
+            <g id="Group-4" transform="translate(102.000000, 3.000000)">
+                <g id="Rectangle-11">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                    <use fill="#ED1877" fill-rule="evenodd" xlink:href="#path-4"></use>
+                </g>
+                <text id="1,000,000,000-USD" font-family="Avenir-Heavy, Avenir" font-size="9" font-weight="600" letter-spacing="0.297000021" fill="#FFFFFF">
+                    <tspan x="8" y="13">1,000,000,000 USD</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
