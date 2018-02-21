@@ -21,7 +21,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-<form action="detail.php" method="post">
+<form action="data.php" method="post">
 	<label> Suburb/Postcode </label>
 	<input type="text" name="name" id="name" class="ui-autocomplete-input">
 	<input type="hidden" name="postcode" id="postcode">

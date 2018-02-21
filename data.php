@@ -52,8 +52,8 @@
 		$err = curl_error($curl);
 
 		curl_close($curl);
-
-		$html = "<table border=1>
+		$data = json_decode($response);
+		/*$html = "<table border=1>
 			<thead>
 				<tr>
 					<td>suburb</td>
@@ -61,14 +61,15 @@
 				</tr>
 			</thead>
 			<tbody>";
-		$data = json_decode($response);
+		
 		foreach ($data as $k) {
 			$html.="<tr><td>$k->name</td>";
 			$html.="<td>$k->postcode</td></tr>";
 		}
 		$html.="</tbody></table>";
 
-		echo $html;
+		echo $html;*/
+		return $data;
 	}
 
 	$distance = $_POST['distance']*1000;
@@ -87,6 +88,22 @@
 		echo "postcode not valid";
 		return false;
 	}
-	listSuburb((int)$distance,$data['latitude'],$data['longitude']);
+	$list_postcode = listSuburb((int)$distance,$data['latitude'],$data['longitude']);
+
+	$html = "<table border=1>
+			<thead>
+				<tr>
+					<td>suburb</td>
+					<td>Postcode</td>
+				</tr>
+			</thead>
+			<tbody>";
+	foreach ($list_postcode as $k) {
+		$html.="<tr><td>$k->name</td>";
+		$html.="<td>$k->postcode</td></tr>";
+	}
+	$html.="</tbody></table>";
+
+	echo $html;
 
 ?>
