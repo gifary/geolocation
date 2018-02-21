@@ -63,34 +63,9 @@
         draw.setMap(map);
 
         // Add a listener for the click event.
-        // draw.addListener('click', showArrays);
-
         infoWindow = new google.maps.InfoWindow;
       }
-
-      /** @this {google.maps.Polygon} */
-      function showArrays(event) {
-        // Since this polygon has only one path, we can call getPath() to return the
-        // MVCArray of LatLngs.
-        var vertices = this.getPath();
-
-        var contentString = '<b>Bermuda Triangle polygon</b><br>' +
-            'Clicked location: <br>' + event.latLng.lat() + ',' + event.latLng.lng() +
-            '<br>';
-
-        // Iterate over the vertices.
-        for (var i =0; i < vertices.getLength(); i++) {
-          var xy = vertices.getAt(i);
-          contentString += '<br>' + 'Coordinate ' + i + ':<br>' + xy.lat() + ',' +
-              xy.lng();
-        }
-
-        // Replace the info window's content and position.
-        infoWindow.setContent(contentString);
-        infoWindow.setPosition(event.latLng);
-
-        infoWindow.open(map);
-      }
+      
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAamC8mmFuHPiEX_R6xxOfdTC-ChuVOiew&callback=initMap">
