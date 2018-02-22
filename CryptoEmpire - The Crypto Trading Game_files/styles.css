@@ -1508,7 +1508,7 @@ select option:focus {
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -webkit-radial-gradient(circle at top right, #0A45A6, #231342 35%);
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -o-radial-gradient(circle at top right, #0A45A6, #231342 35%);
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -moz-radial-gradient(circle at top right, #0A45A6, #231342 35%);
-        background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, radial-gradient(circle at top right, #0A45A6, #231342 35%);
+        background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, radial-gradient(circle at top right, #332153, #231342 35%);
         width: 100%;
         height: auto;
         padding-top: 0px;
@@ -2152,7 +2152,7 @@ select option:focus {
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -webkit-radial-gradient(circle at top right, #0A45A6, #231342 30%);
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -o-radial-gradient(circle at top right, #0A45A6, #231342 30%);
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -moz-radial-gradient(circle at top right, #0A45A6, #231342 30%);
-        background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, radial-gradient(circle at top right, #0A45A6, #231342 30%);
+        background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, radial-gradient(circle at top right, #231342, #231342 30%);
         width: 100%;
         height: auto;
         padding-top: 10px;
@@ -2410,7 +2410,7 @@ select option:focus {
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -webkit-radial-gradient(circle at top right, #0A45A6, #231342 35%);
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -o-radial-gradient(circle at top right, #0A45A6, #231342 35%);
         background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, -moz-radial-gradient(circle at top right, #0A45A6, #231342 35%);
-        background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, radial-gradient(circle at top right, #0A45A6, #231342 35%);
+        background: url("../img/backgrounds/hdr_shadow.png") no-repeat top left, radial-gradient(circle at top right, #332153, #231342 35%);
         width: 100%;
         height: auto;
         padding-top: 10px;
