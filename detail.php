@@ -24,7 +24,8 @@
 		foreach ($list_postcode as $k) {
 			$dataMap[] =array(
 				'lat'=>$k->latitude,
-				'lng'=>$k->longitude
+				'lng'=>$k->longitude,
+        'name' => $k->name
 			);	
 		}
 		$dataMapJson= json_encode($dataMap);
@@ -49,7 +50,7 @@
         });
 
         // Define the LatLng coordinates for the polygon.
-        var coords = JSON.parse('<?php echo $dataMapJson ?>');
+        /*var coords = JSON.parse('//<?php echo $dataMapJson ?>');
 
         // Construct the polygon.
         var draw = new google.maps.Polygon({
@@ -60,7 +61,20 @@
           fillColor: '#FF0000',
           fillOpacity: 0.35
         });
-        draw.setMap(map);
+        draw.setMap(map);*/
+        infowindow = new google.maps.InfoWindow();
+        <?php for($i=0; $i<count($dataMap); $i++ ) { ?>
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(<?php echo $dataMap[$i]['lat'] ?>, <?php echo $dataMap[$i]['lng'] ?>),
+              map: map
+            });
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infowindow.setContent('<?php echo $dataMap[$i]['name'] ?>');
+                infowindow.open(map, marker);
+              }
+            })(marker, <?php echo $i; ?>));
+        <?php } ?>
 
         // Add a listener for the click event.
         infoWindow = new google.maps.InfoWindow;
