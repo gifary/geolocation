@@ -8,3 +8,15 @@
       "uri":"gs://cloud-samples-tests/speech/brooklyn.flac"
   }
 }
+
+
+{
+  "config": {
+      "encoding":"LINEAR16",
+      "language_code": "en-US",
+      "sampleRateHertz":16000
+  },
+  "audio": {
+      "uri":"gs://job-portal-1497237615263.appspot.com/hello (1).wav"
+  }
+}

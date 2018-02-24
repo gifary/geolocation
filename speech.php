@@ -14,32 +14,80 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 # [START speech_quickstart]
 # Includes the autoloader for libraries installed with composer
 require __DIR__ . '/vendor/autoload.php';
+
 # Imports the Google Cloud client library
 use Google\Cloud\Speech\SpeechClient;
+
 # Your Google Cloud Platform project ID
 $projectId = 'job-portal-1497237615263';
-# Instantiates a client
-$speech = new SpeechClient([
-    'projectId' => $projectId,
-    'languageCode' => 'en-US',
-]);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-# The name of the audio file to transcribe
-$fileName = __DIR__ . '/resources/audio.raw';
-# The audio file's encoding and sample rate
-$options = [
-    'encoding' => 'LINEAR16',
-    'sampleRateHertz' => 16000,
-];
-# Detects speech in the audio file
-$results = $speech->recognize(fopen($fileName, 'r'), $options);
-foreach ($results as $result) {
-    echo 'Transcription: ' . $result->alternatives()[0]['transcript'] . PHP_EOL;
+# Instantiates a client
+
+$serviceAccountPath =__DIR__ . '/google.json';
+
+
+
+$target_dir = "resources/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    $uploadOk = 0;
 }
-# [END speech_quickstart]
-return $results;
+// Check file size
+
+// Allow certain file formats
+if($imageFileType != "wav"  ) {
+    echo "Sorry, only wav files are allowed.";
+    $uploadOk = 0;
+    return false;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+    return false;
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        $speech = new SpeechClient([
+		    'projectId' => $projectId,
+		    'languageCode' => 'en-US',
+		    'keyFilePath' => $serviceAccountPath,
+		    
+		]);
+
+		# The name of the audio file to transcribe
+		$fileName = $target_file;
+
+		# The audio file's encoding and sample rate
+		$options = [
+		    'encoding' => 'LINEAR16'
+		];
+
+		# Detects speech in the audio file
+		$results = $speech->recognize(fopen($fileName, 'r'), $options);
+
+		foreach ($results as $result) {
+		    echo 'Transcription: ' . $result->alternatives()[0]['transcript'] . PHP_EOL;
+		}
+
+		# [END speech_quickstart]
+		return $results;
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+        return false;
+    }
+}
+
+
+
+

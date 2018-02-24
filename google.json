@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "job-portal-1497237615263",
+  "private_key_id": "dd1b6e9c67b8c2bc0017b5f4997f067833e10cd6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCoswuVXnPlrLhJ\n5tmO4RKeM5ehblAsasUBK9zKGpbLShyzCE5xh/h4HqnEiFwzFOpEOez5NZjsdjlI\nmnOWjoYnJDVT7a/KGOi+f36crRlurahJ2T7EfpIT5fDdU4NONAW1RW0hzE5FROtf\nth6EiOhoCkHYOtoYTCyXDKwiLjotSC13+pU9FUU6YlDkZY4njilq2XVG9qEE1p/l\ny4SK9Gc7v6U8ikD/WlzX/emk0mWk/E7xZgkJqobwYg0iBe2U4cU0MKOfcE/S50Kb\nPy+iZC0DHMf6rG3DN1resV/RcdxsZTbKeatsx5ZvFRS5+iEtSOf/P/se+dB3tGmZ\n/hGoqSwNAgMBAAECggEAMlx09kvipGt5/pHcW8OEJ9c2Cnqgk4nyMuXRvUHPx3Nh\n+u5dYJYbTly1CJc+kv9I6kIypLjj5J9sfWiiXg1BLjkodFwuENJ71LbB6Orh/0D3\nTsh8bPNuD2OjEqeGONfd5l4J9L+FlDc9Xu7C0IUAgGKjgnYbOoqu+w7M6k1Lj82S\ntPjjU5aN49CE/M30+cpafWIrN519ecyoug5b/Ev7JnbiP8+q+iYzj23cuOHasp66\nLXdQ39z9iuuJyeTjaeFmgEbq1ZjGRKpRojr8wZuXMOauebmdOg0nQbLUqwk0e2oo\nPiOY3PfCVVkQ096c9Oce85QfXlVCJz32Fd62rnB9PwKBgQDQv7KyZO4IKLcqAQxu\n/u2LjvyURfMPpObmckd35dAg3YD6QiJZKr8Ny/vUZlBXHqPt2jghOrzJrRq67pAU\n8LjEjXARURKFKJ0TW0jp13rvihmFngsaPtd1OoW+nCcSwlPLn7/HJsfjJmPEdp5A\nTTka7dq0CrBzdYTXqM53GR4ETwKBgQDO4p2nZK/aHAUZqwZZb4sbnxnTwiAFFLj2\nsu5HX+3vEqIT6qwevLsb48KKZZd5yEFGIGQlBGpBtach+jfQKk19zMB91aZlJzQx\nAlZDiMMjs7n44MzBd7C5odBiPRyuyvmMtnf7n2S38oRChKxOo06yFY/sD6PHwwsD\nWEc1UhaG4wKBgByQnttahFgJekb9Lb5ilA7s2hNQHxqc7hvKt4zonbphlSypsBmT\nh+FTcHp4JbZGMxhxLA0gBIV0cpvx2TWEW0RKNnOoLGicTiI/85JMMj5lH2jxX4OP\n5dvczkBvDcm7XcwXaB7QZ7nlnvFbafxSlOXidnL8o3ipNCxupRIXFcxxAoGBAM2B\ndjFtZvE1nCtfI7N7hacuZ61dzAjACOul2eO0etlcnPtDxS3TM9oEaJ6pQ8qJDa3n\nRxMuS45yL08lCoQRQWCRHzTgIaWhR8rXE3GKTK0OPtHmG/6iMj5zalfrdK58mV8Z\nch3Uu2utz4tz1uVWezmTCZ/n+TzZlfsAmdtxa0cZAoGACt5kOWhhMoNLTy3C43aQ\nDJxc8hb5N0sIsWvb4BPrenTc0vrhJSl3iEnZ9jum1zrBhH1kvGfBlsiyrvsW3T9O\nUFfh4OeZpvyehpeI7yhmiqbXUitO0/mHV+RVHjUeL2oWI7ZYjQaC9yuddfRhwApV\nD1MvkueTjnEc35Q1VGX28JM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "speech@job-portal-1497237615263.iam.gserviceaccount.com",
+  "client_id": "101937950292627653830",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/speech%40job-portal-1497237615263.iam.gserviceaccount.com"
+}
