@@ -75,13 +75,14 @@ if ($uploadOk == 0) {
 
 		# Detects speech in the audio file
 		$results = $speech->recognize(fopen($fileName, 'r'), $options);
-
+		$text='';
 		foreach ($results as $result) {
-		    echo 'Transcription: ' . $result->alternatives()[0]['transcript'] . PHP_EOL;
+		    $text.= " ".$result->alternatives()[0]['transcript'];
 		}
+		echo $text;
 
 		# [END speech_quickstart]
-		return $results;
+		return true;
     } else {
         echo "Sorry, there was an error uploading your file.";
         return false;
