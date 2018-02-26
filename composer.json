@@ -4,7 +4,6 @@
         "php-ffmpeg/php-ffmpeg": "^0.11.1",
         "google/cloud-storage": "^1.3",
         "doctrine/cache": "~1.6.2",
-        "cloudconvert/cloudconvert-php": "2.2.*",
-        "olaferlandsen/ffmpeg-php-class": "^0.1.4"
+        "cloudconvert/cloudconvert-php": "2.2.*"
     }
 }

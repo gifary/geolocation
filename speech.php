@@ -58,9 +58,11 @@ if($imageFileType != "wav"  ) {
 // Check if $uploadOk is set to 0 by an error
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         
-	/*$ffmpeg = FFMpeg\FFMpeg::create([
+	$ffmpeg = FFMpeg\FFMpeg::create([
 		'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
-        'ffprobe.binaries' => '/usr/bin/ffprobe'
+	    'ffprobe.binaries' => '/usr/bin/ffprobe',
+	    'timeout'          => 3600, // The timeout for the underlying process
+	    'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
 	]);
 	$audio = $ffmpeg->open($target_file);
 
@@ -76,11 +78,11 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
 	$name="audio".substr(md5(mt_rand()), 0, 7);
 	$audio->save($format, $name.".flac");
-	unlink($target_file);*/
+	unlink($target_file);
 	//upload to gs
 	
 	// Upload a file to the bucket.
-	$storage = new StorageClient([
+	/*$storage = new StorageClient([
 	    'projectId' => $projectId,
 	    'keyFilePath' => $serviceAccountPath
 	]);
@@ -143,7 +145,7 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     //delete on google storage
     $object->delete();
     echo $text;
-    return true;
+    return true;*/
 
 } else {
     echo "Sorry, there was an error uploading your file.";
