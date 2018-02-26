@@ -59,15 +59,15 @@ if($imageFileType != "wav"  ) {
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         
 	$ffmpeg = FFMpeg\FFMpeg::create([
-		'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
-	    'ffprobe.binaries' => '/usr/bin/ffprobe',
+		'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg',
+	    'ffprobe.binaries' => '/usr/local/bin/ffprobe',
 	    'timeout'          => 3600, // The timeout for the underlying process
 	    'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
 	]);
 	$audio = $ffmpeg->open($target_file);
 
 	$format = new FFMpeg\Format\Audio\Flac();
-	// $format->setAudioCodec("flac");
+	$format->setAudioCodec("flac");
 	$format->on('progress', function ($audio, $format, $percentage) {
 	    echo "$percentage % transcoded";
 	});
@@ -82,20 +82,18 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 	//upload to gs
 	
 	// Upload a file to the bucket.
-	/*$storage = new StorageClient([
+	$storage = new StorageClient([
 	    'projectId' => $projectId,
 	    'keyFilePath' => $serviceAccountPath
 	]);
 	$bucketName = 'job-portal-1497237615263.appspot.com';
 	$bucket = $storage->bucket($bucketName);
-	$name="audio".substr(md5(mt_rand()), 0, 7).".wav";
+	// $name="audio".substr(md5(mt_rand()), 0, 7).".wav";
 	$bucket->upload(
-	    fopen($target_file, 'r'),[
-        	'name' => $name
-    	]
+	    fopen($name.".flac", 'r')
 	);
 	$bucket->upload(
-	    fopen($target_file, 'r'),
+	    fopen($name.".flac", 'r'),
 	    [
 	        'predefinedAcl' => 'publicRead'
 	    ]
@@ -109,12 +107,12 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     ]);
 
     
-    $object = $storage->bucket($bucketName)->object($name);
+    $object = $storage->bucket($bucketName)->object($name.".flac");
 
     $options = [
-	    'encoding' => 'LINEAR16',
+	    'encoding' => 'FLAC',//LINEAR16 for wav file
 	    "language_code"=> "en-US"
-		// "sampleRateHertz"=> 16000
+		// "sampleRateHertz"=> 8000
 	];
 
     // Create the asyncronous recognize operation
@@ -141,11 +139,11 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             $text.= " ".$result->alternatives()[0]['transcript'];
         }
     }
-    unlink($target_file);
+    unlink($name.".flac");
     //delete on google storage
     $object->delete();
     echo $text;
-    return true;*/
+    return true;
 
 } else {
     echo "Sorry, there was an error uploading your file.";
