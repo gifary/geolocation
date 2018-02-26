@@ -19,14 +19,18 @@
 # Includes the autoloader for libraries installed with composer
 require __DIR__ . '/vendor/autoload.php';
 
-# Imports the Google Cloud client library
-use Google\Cloud\Speech\SpeechClient;
-
-# Your Google Cloud Platform project ID
-$projectId = 'job-portal-1497237615263';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+use Exception;
+use Google\Cloud\Speech\SpeechClient;
+use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Core\ExponentialBackoff;
+
+# Your Google Cloud Platform project ID
+$projectId = 'job-portal-1497237615263';
+
 # Instantiates a client
 
 $serviceAccountPath =__DIR__ . '/google.json';
@@ -58,31 +62,90 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        $speech = new SpeechClient([
+        
+    	$fileName = $target_file;
+
+    	
+		$ffmpeg = FFMpeg\FFMpeg::create();
+		$audio = $ffmpeg->open($fileName);
+
+		$format = new FFMpeg\Format\Audio\Flac();
+		$format->on('progress', function ($audio, $format, $percentage) {
+		    echo "$percentage % transcoded";
+		});
+
+		$format
+		    ->setAudioChannels(1)
+		    ->setAudioKiloBitrate(256);
+		$name="audio".substr(md5(mt_rand()), 0, 7);
+		$audio->save($format, $name.".flac");
+		unlink($fileName);
+		//upload to gs
+		$storage = new StorageClient([
 		    'projectId' => $projectId,
-		    'languageCode' => 'en-US',
-		    'keyFilePath' => $serviceAccountPath,
-		    
+		    'keyFilePath' => $serviceAccountPath
 		]);
+		$bucketName = 'job-portal-1497237615263.appspot.com';
 
-		# The name of the audio file to transcribe
-		$fileName = $target_file;
+		
+		$bucket = $storage->bucket($bucketName);
 
-		# The audio file's encoding and sample rate
-		$options = [
-		    'encoding' => 'LINEAR16'
+		// Upload a file to the bucket.
+		
+
+		$bucket->upload(
+		    fopen($name.".flac", 'r')
+		);
+		$bucket->upload(
+		    fopen($name.".flac", 'r'),
+		    [
+		        'predefinedAcl' => 'publicRead'
+		    ]
+		);
+		//show transcript
+		// Create the speech client
+	    $speech = new SpeechClient([
+	        'projectId' => $projectId,
+		    'languageCode' => 'en-US',
+		    'keyFilePath' => $serviceAccountPath
+	    ]);
+
+	    
+	    $object = $storage->bucket($bucketName)->object($name.".flac");
+
+	    $options = [
+		    'encoding' => 'FLAC',
+    		"sampleRateHertz"=> 8000
 		];
 
-		# Detects speech in the audio file
-		$results = $speech->recognize(fopen($fileName, 'r'), $options);
-		$text='';
-		foreach ($results as $result) {
-		    $text.= " ".$result->alternatives()[0]['transcript'];
-		}
-		echo $text;
+	    // Create the asyncronous recognize operation
+	    $operation = $speech->beginRecognizeOperation(
+	        $object,
+	        $options
+	    );
 
-		# [END speech_quickstart]
-		return true;
+	    // Wait for the operation to complete
+	    $backoff = new ExponentialBackoff(10);
+	    $backoff->execute(function () use ($operation) {
+	        // print('Waiting for operation to complete' . PHP_EOL);
+	        $operation->reload();
+	        if (!$operation->isComplete()) {
+	            throw new Exception('Job has not yet completed', 500);
+	        }
+	    });
+
+	    // Print the results
+	    if ($operation->isComplete()) {
+	    	$text='';
+	        $results = $operation->results();
+	        foreach ($results as $result) {
+	            $text.= " ".$result->alternatives()[0]['transcript'];
+	        }
+	    }
+	    unlink($name.".flac");
+	    echo $text;
+	    return true;
+
     } else {
         echo "Sorry, there was an error uploading your file.";
         return false;

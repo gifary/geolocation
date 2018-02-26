@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
+    'Symfony\\Component\\Filesystem\\' => array($vendorDir . '/symfony/filesystem'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
@@ -20,6 +22,7 @@ return array(
     'Google\\LongRunning\\' => array($vendorDir . '/google/gax/src/LongRunning'),
     'Google\\Jison\\' => array($vendorDir . '/google/gax/src/Jison'),
     'Google\\Iam\\' => array($vendorDir . '/google/gax/src/Iam'),
+    'Google\\Cloud\\Storage\\' => array($vendorDir . '/google/cloud-storage'),
     'Google\\Cloud\\Speech\\' => array($vendorDir . '/google/cloud-speech'),
     'Google\\Cloud\\Core\\' => array($vendorDir . '/google/cloud-core'),
     'Google\\Cloud\\' => array($vendorDir . '/google/gax/src/Cloud'),
@@ -31,4 +34,5 @@ return array(
     'GPBMetadata\\Google\\' => array($vendorDir . '/google/gax/metadata'),
     'GPBMetadata\\' => array($vendorDir . '/google/proto-client/src/GPBMetadata'),
     'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
+    'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
 );
