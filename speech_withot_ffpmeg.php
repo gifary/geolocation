@@ -18,6 +18,8 @@ $projectId = 'job-portal-1497237615263';
 
 $serviceAccountPath =__DIR__ . '/google.json';
 
+
+
 $target_dir = "resources/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -38,16 +40,14 @@ if($imageFileType != "wav"  ) {
 // Check if $uploadOk is set to 0 by an error
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         
-	$ffmpeg = FFMpeg\FFMpeg::create([
-		'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg',
-	    'ffprobe.binaries' => '/usr/local/bin/ffprobe',
-	    'timeout'          => 3600, // The timeout for the underlying process
-	    'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+	/*$ffmpeg = FFMpeg\FFMpeg::create([
+		'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+        'ffprobe.binaries' => '/usr/bin/ffprobe'
 	]);
 	$audio = $ffmpeg->open($target_file);
 
 	$format = new FFMpeg\Format\Audio\Flac();
-	$format->setAudioCodec("flac");
+	// $format->setAudioCodec("flac");
 	$format->on('progress', function ($audio, $format, $percentage) {
 	    echo "$percentage % transcoded";
 	});
@@ -58,7 +58,7 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
 	$name="audio".substr(md5(mt_rand()), 0, 7);
 	$audio->save($format, $name.".flac");
-	unlink($target_file);
+	unlink($target_file);*/
 	//upload to gs
 	
 	// Upload a file to the bucket.
@@ -68,12 +68,14 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 	]);
 	$bucketName = 'job-portal-1497237615263.appspot.com';
 	$bucket = $storage->bucket($bucketName);
-	// $name="audio".substr(md5(mt_rand()), 0, 7).".wav";
+	$name="audio".substr(md5(mt_rand()), 0, 7).".wav";
 	$bucket->upload(
-	    fopen($name.".flac", 'r')
+	    fopen($target_file, 'r'),[
+        	'name' => $name
+    	]
 	);
 	$bucket->upload(
-	    fopen($name.".flac", 'r'),
+	    fopen($target_file, 'r'),
 	    [
 	        'predefinedAcl' => 'publicRead'
 	    ]
@@ -87,12 +89,12 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     ]);
 
     
-    $object = $storage->bucket($bucketName)->object($name.".flac");
+    $object = $storage->bucket($bucketName)->object($name);
 
     $options = [
-	    'encoding' => 'FLAC',//LINEAR16 for wav file
+	    'encoding' => 'LINEAR16',
 	    "language_code"=> "en-US"
-		// "sampleRateHertz"=> 8000
+		// "sampleRateHertz"=> 16000
 	];
 
     // Create the asyncronous recognize operation
@@ -119,7 +121,7 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             $text.= " ".$result->alternatives()[0]['transcript'];
         }
     }
-    unlink($name.".flac");
+    unlink($target_file);
     //delete on google storage
     $object->delete();
     echo $text;
@@ -129,4 +131,3 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "Sorry, there was an error uploading your file.";
     return false;
 }
-
