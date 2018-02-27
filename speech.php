@@ -39,8 +39,8 @@ if($imageFileType != "wav"  ) {
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         
 	$ffmpeg = FFMpeg\FFMpeg::create([
-		'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg',
-	    'ffprobe.binaries' => '/usr/local/bin/ffprobe',
+		'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+	    'ffprobe.binaries' => '/usr/bin/ffprobe',
 	    'timeout'          => 3600, // The timeout for the underlying process
 	    'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
 	]);
