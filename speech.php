@@ -1,4 +1,5 @@
 <?php
+//https://github.com/PHP-FFMpeg/PHP-FFMpeg/issues/409
 require __DIR__ . '/vendor/autoload.php';
 
 ini_set('display_errors', 1);
@@ -37,12 +38,15 @@ if($imageFileType != "wav"  ) {
 }
 // Check if $uploadOk is set to 0 by an error
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        
+    $logger = new Monolog\Logger('test');
+	$logger->pushHandler(new Monolog\Handler\StreamHandler('php://stdout'));
+
 	$ffmpeg = FFMpeg\FFMpeg::create([
-		'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
-	    'ffprobe.binaries' => '/usr/bin/ffprobe',
-	    'timeout'          => 3600, // The timeout for the underlying process
-	    'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+		'ffmpeg.threads'   => 4,
+        'ffmpeg.timeout'   => 300,
+        'ffmpeg.binaries'  => array('/usr/local/bin/avconv', '/usr/local/bin/ffmpeg'),
+        'ffprobe.timeout'  => 30,
+        'ffprobe.binaries' => array('/usr/local/bin/avprobe', '/usr/loacl/bin/ffprobe'),
 	]);
 	$audio = $ffmpeg->open($target_file);
 

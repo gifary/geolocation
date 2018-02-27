@@ -1,22 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-require __DIR__ . '/vendor/autoload.php';
-use \CloudConvert\Api;
- 
-$api = new Api("5d8_IG9VCT-hAkjBAMuZtDbXp3FsjVG8A6ZSMRR4GTnqIr4-HNtriRoP6N-4P_b8Sx_3BO47-lcog5oJWQNbqg");
- 
-$api->convert([
-    "inputformat" => "wav",
-    "outputformat" => "flac",
-    "input" => "upload",
-    "converteroptions" => [
-        "audio_codec" => "FLAC",
-        "audio_channels" => "1",
-        "audio_frequency" => "8000",
-    ],
-    "file" => fopen('tes.wav', 'r'),
-])
-->wait() ->download();
+var_dump(getenv('PATH'));
+var_dump(exec('which ffmpeg'));
+var_dump(ini_get('open_basedir'));
+var_dump(is_file(exec('which ffmpeg')));
+var_dump(is_executable(exec('which ffmpeg')));
 ?>
